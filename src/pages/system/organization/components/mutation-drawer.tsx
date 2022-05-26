@@ -13,7 +13,7 @@ const MutationDrawer = (props: { visible: boolean; onCancel: () => void; formRec
   const { treeData, isLoading: treeLoading } = useOrganizations(
     {},
     {
-      enabled: false,
+      enabled: !!props.visible,
     },
   );
 

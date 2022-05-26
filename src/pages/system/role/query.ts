@@ -1,8 +1,8 @@
 import * as RoleService from './service';
 
 import { Message, Modal } from '@arco-design/web-react';
-import { QueryObserverOptions, useQuery, useQueryClient } from 'react-query';
-import { RoleParams, RoleRecord, RoleRequest } from './type.d';
+import { RoleMenuParams, RoleMenuRecord, RoleMenuRequest, RoleParams, RoleRecord, RoleRequest } from './type.d';
+import { UseQueryOptions, useQuery, useQueryClient } from 'react-query';
 
 import { PageResponse } from '@/types/global';
 import { useMutation } from 'react-query';
@@ -11,10 +11,19 @@ export enum ServerStateKeysEnum {
   query = 'role-query',
 }
 
-export const useRoles = (params: Partial<RoleParams>, options?: QueryObserverOptions<PageResponse<RoleRecord>>) => {
+export const useRoles = (params: Partial<RoleParams>, options?: UseQueryOptions<PageResponse<RoleRecord>>) => {
   const queryInfo = useQuery<PageResponse<RoleRecord>>(
     [ServerStateKeysEnum.query, params],
     () => RoleService.query(params),
+    options,
+  );
+  return queryInfo;
+};
+
+export const useGrantMenus = (params: RoleMenuParams, options?: UseQueryOptions<RoleMenuRecord[]>) => {
+  const queryInfo = useQuery<RoleMenuRecord[]>(
+    [ServerStateKeysEnum.query, params],
+    () => RoleService.queryMenus(params),
     options,
   );
   return queryInfo;
@@ -45,18 +54,20 @@ export const useRoleMutation = (title: string = '新增') => {
 };
 
 export const useRoleMenuMutation = () => {
+  const queryClient = useQueryClient();
   return useMutation(
-    (req: Partial<RoleRequest>) => {
-      const submit = req.id ? RoleService.update : RoleService.create;
+    (req: Partial<RoleMenuRequest>) => {
+      const submit = RoleService.grantMenus;
       return submit(req);
     },
     {
       onMutate: () => {
         Message.loading(`正在给角色授权菜单数据...`);
       },
-      onSuccess: () => {
+      onSuccess: (_data, variables, _context) => {
         Message.clear();
         Message.success(`授权成功`);
+        queryClient.invalidateQueries([ServerStateKeysEnum.query, { role_id: variables.role_id }]);
       },
       onError: () => {
         Message.clear();

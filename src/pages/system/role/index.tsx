@@ -3,6 +3,7 @@ import { RoleParams, RoleRecord } from './type';
 import { useRoleDelete, useRoles } from './query';
 
 import MutationDrawer from './components/mutation-drawer';
+import MutationMenuDrawer from './components/mutation-menu-drawer';
 import OperationButtons from './components/operation-buttons';
 import SearchForm from './components/search-form';
 import { calCurrent } from '@/utils/paginator';
@@ -12,6 +13,7 @@ import { useState } from 'react';
 const Role = () => {
   const [formParams, setFormParams] = useState<Partial<RoleParams>>({});
   const [drawerVisible, setDrawerVisible] = useState<boolean>(false);
+  const [menuDrawerVisible, setMenuDrawerVisible] = useState<boolean>(false);
   const [currentRecord, setCurrentRecord] = useState<Partial<RoleRecord>>({});
 
   const { data, isLoading } = useRoles(formParams);
@@ -41,7 +43,8 @@ const Role = () => {
       });
     }
     if (type === 'grantMenu') {
-      // TODO
+      setCurrentRecord(record);
+      setMenuDrawerVisible(true);
     }
   };
   const columns = getColumns<RoleRecord>(operationCallback);
@@ -68,6 +71,14 @@ const Role = () => {
         visible={drawerVisible}
         onCancel={() => {
           setDrawerVisible(false);
+          setCurrentRecord({});
+        }}
+        formRecord={currentRecord}
+      />
+      <MutationMenuDrawer
+        visible={menuDrawerVisible}
+        onCancel={() => {
+          setMenuDrawerVisible(false);
           setCurrentRecord({});
         }}
         formRecord={currentRecord}

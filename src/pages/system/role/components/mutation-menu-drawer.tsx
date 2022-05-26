@@ -1,28 +1,37 @@
-import { Card, Drawer, Form, FormInstance } from '@arco-design/web-react';
+import { Card, Drawer, Tree } from '@arco-design/web-react';
+import { useGrantMenus, useRoleMenuMutation } from '../query';
 
+import FallbackCompent from '@/components/FallbackCompent';
 import { RoleRecord } from '../type.d';
-import { useRef } from 'react';
-import { useRoleMenuMutation } from '../query';
+import { useMenus } from '@/pages/system/menu/query';
+import { useState } from 'react';
 
 const MutationMenuDrawer = (props: { visible: boolean; onCancel: () => void; formRecord: Partial<RoleRecord> }) => {
-  const formRef = useRef<FormInstance>(null);
-  const mutation = useRoleMenuMutation();
+  const [checkedKeys, setCheckedKeys] = useState<string[]>([]);
+  const grantMutation = useRoleMenuMutation();
 
-  const afterOpen = () => {
-    formRef.current?.setFieldsValue(props.formRecord);
+  const { data: menuData, isLoading: queryMenu } = useMenus({}, { enabled: !!props.visible });
+  const { isLoading: queryGrant } = useGrantMenus(
+    { role_id: props.formRecord.id || '1' },
+    { enabled: Boolean(props.formRecord.id), onSuccess: (data) => setCheckedKeys(data.map((item) => item.menu_id)) },
+  );
+
+  const afterClose = () => {
+    setCheckedKeys([]);
   };
 
-  const onOk = () => {
-    formRef.current?.validate().then((values) => {
-      mutation.mutate(
-        { ...props.formRecord, ...values },
-        {
-          onSuccess: () => {
-            props.onCancel();
-          },
+  const onOk = () =>
+    grantMutation.mutate(
+      { role_id: props.formRecord.id, menu_ids: checkedKeys },
+      {
+        onSuccess: () => {
+          props.onCancel();
         },
-      );
-    });
+      },
+    );
+
+  const onCheck = (checkedKeys: string[]) => {
+    setCheckedKeys(checkedKeys);
   };
 
   return (
@@ -31,26 +40,25 @@ const MutationMenuDrawer = (props: { visible: boolean; onCancel: () => void; for
       unmountOnExit
       visible={props.visible}
       onCancel={props.onCancel}
-      afterOpen={afterOpen}
+      afterClose={afterClose}
       onOk={onOk}
-      confirmLoading={mutation.isLoading}
+      confirmLoading={grantMutation.isLoading}
       title={'授权菜单数据'}
     >
-      <Form ref={formRef} scrollToFirstError layout={'vertical'}>
-        <Card bordered={false}>
-          <Form.Item
-            label='角色名称'
-            field='name'
-            rules={[
-              { required: true, message: '名称为必填选项' },
-              { minLength: 2, message: '名称最小需要2个字符' },
-              { maxLength: 32, message: '名称最多为32个字符' },
-            ]}
-          >
-            <Input placeholder='请输入名称' />
-          </Form.Item>
-        </Card>
-      </Form>
+      <Card bordered={false}>
+        {queryMenu && queryGrant ? (
+          <FallbackCompent />
+        ) : (
+          <Tree
+            checkable
+            treeData={menuData}
+            fieldNames={{ key: 'id', title: 'name' }}
+            checkedKeys={checkedKeys}
+            onCheck={onCheck}
+            virtualListProps={{ height: '100%' }}
+          />
+        )}
+      </Card>
     </Drawer>
   );
 };

@@ -2,7 +2,7 @@ import * as DictionaryService from './service';
 
 import { DictionaryParams, DictionaryRecord, DictionaryRequest } from './type';
 import { Message, Modal } from '@arco-design/web-react';
-import { QueryObserverOptions, useQuery, useQueryClient } from 'react-query';
+import { UseQueryOptions, useQuery, useQueryClient } from 'react-query';
 
 import { PageResponse } from '@/types/global';
 import { useMutation } from 'react-query';
@@ -13,7 +13,7 @@ export enum ServerStateKeysEnum {
 
 export const useDictionaries = (
   params: Partial<DictionaryParams>,
-  options?: QueryObserverOptions<PageResponse<DictionaryRecord>>,
+  options?: UseQueryOptions<PageResponse<DictionaryRecord>>,
 ) => {
   const queryInfo = useQuery<PageResponse<DictionaryRecord>>(
     [ServerStateKeysEnum.query, params],

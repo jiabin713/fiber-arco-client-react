@@ -2,7 +2,7 @@ import * as OrganizationService from './service';
 
 import { Message, Modal } from '@arco-design/web-react';
 import { OrganizationParams, OrganizationRecord, OrganizationRequest } from './type.d';
-import { QueryObserverOptions, useQuery, useQueryClient } from 'react-query';
+import { UseQueryOptions, useQuery, useQueryClient } from 'react-query';
 
 import { useMutation } from 'react-query';
 
@@ -12,7 +12,7 @@ export enum ServerStateKeysEnum {
 
 export const useOrganizations = (
   params: Partial<OrganizationParams>,
-  options?: QueryObserverOptions<OrganizationRecord[]>,
+  options?: UseQueryOptions<OrganizationRecord[]>,
 ) => {
   const queryInfo = useQuery<OrganizationRecord[]>(
     [ServerStateKeysEnum.query, params],

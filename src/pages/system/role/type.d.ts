@@ -26,3 +26,20 @@ export interface RoleRequest {
   sort: number;
   remark: string;
 }
+
+export interface RoleMenuRecord {
+  id: string;
+  role_id: string;
+  menu_id: string;
+  created_at: number;
+  created_by: string;
+}
+
+export interface RoleMenuParams {
+  role_id: string;
+}
+
+export interface RoleMenuRequest {
+  role_id: string;
+  menu_ids: string[];
+}

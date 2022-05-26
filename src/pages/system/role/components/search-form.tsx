@@ -22,19 +22,19 @@ const SearchForm = (props: { onSearch: (values: Partial<RoleParams>) => void }) 
       <Form form={form} labelAlign='left' labelCol={{ span: 5 }} wrapperCol={{ span: 19 }} className='mr-4'>
         <Grid.Row gutter={24}>
           <Grid.Col span={12}>
-            <Form.Item label='名称' field='name'>
+            <Form.Item label='名称' field='name' rules={[{ maxLength: 32, message: '名称最多为32个字符' }]}>
               <Input allowClear placeholder='请输入名称' />
             </Form.Item>
           </Grid.Col>
           <Grid.Col span={12}>
-            <Form.Item label='编码' field='code'>
+            <Form.Item label='编码' field='code' rules={[{ maxLength: 32, message: '名称最多为32个字符' }]}>
               <Input allowClear placeholder='请输入编码' />
             </Form.Item>
           </Grid.Col>
         </Grid.Row>
         <Grid.Row gutter={24}>
           <Grid.Col span={12}>
-            <Form.Item label='备注' field='remark'>
+            <Form.Item label='备注' field='remark' rules={[{ maxLength: 32, message: '名称最多为64个字符' }]}>
               <Input allowClear placeholder='请输入备注' />
             </Form.Item>
           </Grid.Col>

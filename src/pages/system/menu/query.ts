@@ -2,7 +2,7 @@ import * as MenuService from './service';
 
 import { MenuParams, MenuRecord, MenuRequest } from './type';
 import { Message, Modal } from '@arco-design/web-react';
-import { QueryObserverOptions, useQuery, useQueryClient } from 'react-query';
+import { UseQueryOptions, useQuery, useQueryClient } from 'react-query';
 
 import { useMutation } from 'react-query';
 
@@ -10,7 +10,7 @@ export enum ServerStateKeysEnum {
   query = 'menu-query',
 }
 
-export const useMenus = (params: Partial<MenuParams>, options?: QueryObserverOptions<MenuRecord[]>) => {
+export const useMenus = (params: Partial<MenuParams>, options?: UseQueryOptions<MenuRecord[]>) => {
   const queryInfo = useQuery<MenuRecord[]>(
     [ServerStateKeysEnum.query, params],
     () => MenuService.queryTree(params),
@@ -18,7 +18,6 @@ export const useMenus = (params: Partial<MenuParams>, options?: QueryObserverOpt
   );
   return {
     ...queryInfo,
-    // treeData: queryInfo.data?.con({ id: '1', name: '顶级', status: 'enable' } as MenuRecord),
     treeData: [{ id: '1', name: '顶级菜单', status: 'enable' }].concat(queryInfo.data || []),
   };
 };

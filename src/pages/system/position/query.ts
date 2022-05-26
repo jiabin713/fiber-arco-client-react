@@ -2,7 +2,7 @@ import * as PositionService from './service';
 
 import { Message, Modal } from '@arco-design/web-react';
 import { PositionParams, PositionRecord, PositionRequest } from './type.d';
-import { QueryObserverOptions, useQuery, useQueryClient } from 'react-query';
+import { UseQueryOptions, useQuery, useQueryClient } from 'react-query';
 
 import { PageResponse } from '@/types/global';
 import { useMutation } from 'react-query';
@@ -13,7 +13,7 @@ export enum ServerStateKeysEnum {
 
 export const usePositions = (
   params: Partial<PositionParams>,
-  options?: QueryObserverOptions<PageResponse<PositionRecord>>,
+  options?: UseQueryOptions<PageResponse<PositionRecord>>,
 ) => {
   const queryInfo = useQuery<PageResponse<PositionRecord>>(
     [ServerStateKeysEnum.query, params],

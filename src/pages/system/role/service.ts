@@ -1,4 +1,4 @@
-import { RoleParams, RoleRecord, RoleRequest } from './type';
+import { RoleMenuParams, RoleMenuRecord, RoleMenuRequest, RoleParams, RoleRecord, RoleRequest } from './type';
 
 import { PageResponse } from '@/types/global';
 import request from '@/utils/instance';
@@ -6,15 +6,11 @@ import request from '@/utils/instance';
 const URL = '/system/roles';
 
 export const query = async (params: Partial<RoleParams>): Promise<PageResponse<RoleRecord>> => {
-  return request.get(URL, {
-    params,
-  });
+  return request.get(URL, { params });
 };
 
 export const queryTree = async (params: Partial<RoleParams>): Promise<RoleRecord[]> => {
-  return request.get(`${URL}/tree`, {
-    params,
-  });
+  return request.get(`${URL}/tree`, { params });
 };
 
 export const create = async (data: Partial<RoleRequest>) => {
@@ -27,4 +23,12 @@ export const update = async (data: Partial<RoleRequest>) => {
 
 export const remove = async (data: Partial<RoleRequest>) => {
   return request.delete(URL, { data });
+};
+
+export const grantMenus = async (data: Partial<RoleMenuRequest>) => {
+  return request.post(`${URL}/menus`, data);
+};
+
+export const queryMenus = async (params: Partial<RoleMenuParams>): Promise<RoleMenuRecord[]> => {
+  return request.get(`${URL}/menus`, { params });
 };
