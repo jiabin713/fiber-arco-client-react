@@ -2,7 +2,7 @@ import { Button, Form, Grid, Input, Select } from '@arco-design/web-react';
 import { IconRefresh, IconSearch } from '@arco-design/web-react/icon';
 
 import { OrganizationParams } from '../type';
-import useOptions from '@/hooks/useOptions';
+import useOptions from '@/hooks/useDictOptions';
 
 const SearchForm = (props: { onSearch: (values: Partial<OrganizationParams>) => void }) => {
   const [form] = Form.useForm();

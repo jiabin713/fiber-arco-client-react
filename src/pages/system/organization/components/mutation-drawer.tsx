@@ -3,13 +3,13 @@ import { useOrganizationMutation, useOrganizations } from '../query';
 
 import { OrganizationRecord } from '../type.d';
 import { StatusEnum } from '@/atoms/dictionary';
-import useOptions from '@/hooks/useOptions';
+import useDictOptions from '@/hooks/useDictOptions';
 import { useState } from 'react';
 
 const MutationDrawer = (props: { visible: boolean; onCancel: () => void; formRecord: Partial<OrganizationRecord> }) => {
   const [title, setTitle] = useState('');
   const [form] = Form.useForm();
-  const [options, isLoading] = useOptions('system_status');
+  const [options, isLoading] = useDictOptions('system_status');
   const { treeData, isLoading: treeLoading } = useOrganizations(
     {},
     {
@@ -69,7 +69,7 @@ const MutationDrawer = (props: { visible: boolean; onCancel: () => void; formRec
           >
             <TreeSelect
               allowClear
-              placeholder='请选择上级菜单'
+              placeholder='请选择上级组织'
               loading={treeLoading}
               treeData={treeData}
               fieldNames={{ key: 'id', title: 'name' }}

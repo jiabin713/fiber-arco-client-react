@@ -20,6 +20,15 @@ export const useRoles = (params: Partial<RoleParams>, options?: UseQueryOptions<
   return queryInfo;
 };
 
+export const useRolesAll = (params: Partial<RoleParams>, options?: UseQueryOptions<RoleRecord[]>) => {
+  const queryInfo = useQuery<RoleRecord[]>(
+    [ServerStateKeysEnum.query, 'all', params],
+    () => RoleService.queryAll(params),
+    options,
+  );
+  return queryInfo;
+};
+
 export const useGrantMenus = (params: RoleMenuParams, options?: UseQueryOptions<RoleMenuRecord[]>) => {
   const queryInfo = useQuery<RoleMenuRecord[]>(
     [ServerStateKeysEnum.query, params],
@@ -100,7 +109,7 @@ export const useRoleDelete = () => {
 
   const confirmRemove = (record: Partial<RoleRecord>, onSuccess: () => boolean) => {
     Modal.confirm({
-      title: '确认删除当前所选菜单?',
+      title: '确认删除当前所选角色?',
       content: `删除后，${record.name}将被清空，且无法恢复`,
       okButtonProps: { status: 'danger' },
       onOk: () =>

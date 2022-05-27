@@ -9,8 +9,8 @@ export const query = async (params: Partial<RoleParams>): Promise<PageResponse<R
   return request.get(URL, { params });
 };
 
-export const queryTree = async (params: Partial<RoleParams>): Promise<RoleRecord[]> => {
-  return request.get(`${URL}/tree`, { params });
+export const queryAll = async (params: Partial<RoleParams>): Promise<RoleRecord[]> => {
+  return request.get(`${URL}/all`, { params });
 };
 
 export const create = async (data: Partial<RoleRequest>) => {

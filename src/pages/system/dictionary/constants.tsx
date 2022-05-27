@@ -16,7 +16,7 @@ export function getColumns<T>(callback: (record: Partial<T>, type: string) => Pr
     {
       title: '操作',
       dataIndex: 'operations',
-      width: 260,
+      width: 200,
       fixed: 'right',
       render: (_, record: Partial<T>) => (
         <Space>

@@ -1,42 +1,30 @@
-import * as PositionService from './service';
+import * as StaffService from './service';
 
 import { Message, Modal } from '@arco-design/web-react';
-import { PositionParams, PositionRecord, PositionRequest } from './type.d';
+import { StaffParams, StaffRecord, StaffRequest } from './type.d';
 import { UseQueryOptions, useQuery, useQueryClient } from 'react-query';
 
 import { PageResponse } from '@/types/global';
 import { useMutation } from 'react-query';
 
 export enum ServerStateKeysEnum {
-  query = 'position-query',
+  query = 'staff-query',
 }
 
-export const usePositions = (
-  params: Partial<PositionParams>,
-  options?: UseQueryOptions<PageResponse<PositionRecord>>,
-) => {
-  const queryInfo = useQuery<PageResponse<PositionRecord>>(
+export const useStaffs = (params: Partial<StaffParams>, options?: UseQueryOptions<PageResponse<StaffRecord>>) => {
+  const queryInfo = useQuery<PageResponse<StaffRecord>>(
     [ServerStateKeysEnum.query, params],
-    () => PositionService.query(params),
+    () => StaffService.query(params),
     options,
   );
   return queryInfo;
 };
 
-export const usePositionsAll = (params: Partial<PositionParams>, options?: UseQueryOptions<PositionRecord[]>) => {
-  const queryInfo = useQuery<PositionRecord[]>(
-    [ServerStateKeysEnum.query, 'all', params],
-    () => PositionService.queryAll(params),
-    options,
-  );
-  return queryInfo;
-};
-
-export const usePositionMutation = (title: string = '新增') => {
+export const useStaffMutation = (title: string = '新增') => {
   const queryClient = useQueryClient();
   return useMutation(
-    (req: Partial<PositionRequest>) => {
-      const submit = req.id ? PositionService.update : PositionService.create;
+    (req: Partial<StaffRequest>) => {
+      const submit = req.id ? StaffService.update : StaffService.create;
       return submit(req);
     },
     {
@@ -56,11 +44,11 @@ export const usePositionMutation = (title: string = '新增') => {
   );
 };
 
-export const usePositionDelete = () => {
+export const useStaffDelete = () => {
   const queryClient = useQueryClient();
   const deleteMutation = useMutation(
-    (req: Partial<PositionRequest>) => {
-      return PositionService.remove(req);
+    (req: Partial<StaffRequest>) => {
+      return StaffService.remove(req);
     },
     {
       onMutate: (variables) => {
@@ -77,9 +65,9 @@ export const usePositionDelete = () => {
     },
   );
 
-  const confirmRemove = (record: Partial<PositionRecord>, onSuccess: () => boolean) => {
+  const confirmRemove = (record: Partial<StaffRecord>, onSuccess: () => boolean) => {
     Modal.confirm({
-      title: '确认删除当前所选职位?',
+      title: '确认删除当前所选用户?',
       content: `删除后，${record.name}将被清空，且无法恢复`,
       okButtonProps: { status: 'danger' },
       onOk: () =>

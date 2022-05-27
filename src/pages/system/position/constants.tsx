@@ -17,7 +17,8 @@ export function getColumns<T>(callback: (record: Partial<T>, type: string) => Pr
     {
       title: '操作',
       dataIndex: 'operations',
-      width: '150px',
+      width: 168,
+      fixed: 'right',
       render: (_, record: Partial<T>) => (
         <Dropdown.Button
           onClick={() => callback(record, 'edit')}

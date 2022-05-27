@@ -1,7 +1,7 @@
 import { Card, Drawer, Form, Input, InputNumber, Select } from '@arco-design/web-react';
 
 import { RoleRecord } from '../type.d';
-import useOptions from '@/hooks/useOptions';
+import useDictOptions from '@/hooks/useDictOptions';
 import { useRoleMutation } from '../query';
 import { useState } from 'react';
 
@@ -9,7 +9,7 @@ const MutationDrawer = (props: { visible: boolean; onCancel: () => void; formRec
   const [form] = Form.useForm();
   const [title, setTitle] = useState('');
   const mutation = useRoleMutation(title);
-  const [options, isLoading] = useOptions('system_status');
+  const [options, isLoading] = useDictOptions('system_status');
 
   const afterOpen = () => {
     form.setFieldsValue(props.formRecord);

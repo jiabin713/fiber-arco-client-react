@@ -51,6 +51,7 @@ const MutationMenuDrawer = (props: { visible: boolean; onCancel: () => void; for
         ) : (
           <Tree
             checkable
+            autoExpandParent
             treeData={menuData}
             fieldNames={{ key: 'id', title: 'name' }}
             checkedKeys={checkedKeys}

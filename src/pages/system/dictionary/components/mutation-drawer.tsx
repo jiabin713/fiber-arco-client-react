@@ -2,14 +2,14 @@ import { Card, Drawer, Form, Input, InputNumber, Select } from '@arco-design/web
 import { useEffect, useState } from 'react';
 
 import { DictionaryRecord } from '../type';
+import useDictOptions from '@/hooks/useDictOptions';
 import { useDictionaryMutation } from '../query';
-import useOptions from '@/hooks/useOptions';
 
 const MutationDrawer = (props: { visible: boolean; onCancel: () => void; formRecord: Partial<DictionaryRecord> }) => {
   const [form] = Form.useForm();
   const [title, setTitle] = useState('');
   const mutation = useDictionaryMutation(title);
-  const [options, isLoading] = useOptions('system_status');
+  const [options, isLoading] = useDictOptions('system_status');
 
   const afterOpen = () => {
     form.setFieldsValue(props.formRecord);

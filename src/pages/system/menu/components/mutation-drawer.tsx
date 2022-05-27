@@ -3,14 +3,14 @@ import { useMenuMutation, useMenus } from '../query';
 
 import { MenuRecord } from '../type.d';
 import { StatusEnum } from '@/atoms/dictionary';
-import useOptions from '@/hooks/useOptions';
+import useDictOptions from '@/hooks/useDictOptions';
 import { useState } from 'react';
 
 const MutationDrawer = (props: { visible: boolean; onCancel: () => void; formRecord: Partial<MenuRecord> }) => {
   const [form] = Form.useForm();
   const [title, setTitle] = useState('');
-  const [statusOptions, loadingStatus] = useOptions('system_status');
-  const [typeOptions, loadingType] = useOptions('menu_type');
+  const [statusOptions, loadingStatus] = useDictOptions('system_status');
+  const [typeOptions, loadingType] = useDictOptions('menu_type');
 
   const { isLoading, treeData } = useMenus(
     {},
