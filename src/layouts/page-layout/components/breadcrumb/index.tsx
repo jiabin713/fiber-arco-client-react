@@ -1,15 +1,16 @@
-import { getFlattenRoutes, useMenuTree } from '@/atoms/menu';
 import { useEffect, useMemo, useState } from 'react';
 
 import { Breadcrumb as ArcoBreadcrumb } from '@arco-design/web-react';
 import { IconApps } from '@arco-design/web-react/icon';
 import { MenuRecord } from '@/pages/system/menu/type';
+import { getFlattenRoutes } from '@/atoms/menu';
 import { useLocation } from 'react-router-dom';
+import { useMenuTree } from '@/hooks/useMenuTree';
 
 const Breadcrumb = () => {
   const [breadcrumbs, setBreadcrumbs] = useState<MenuRecord[]>([]);
   const { pathname } = useLocation();
-  const pathnames = pathname.split('/').filter((x) => x);
+  const pathnames = pathname.split('/').filter((x) => x != undefined);
   const routes = useMenuTree();
 
   const getBreadcrumbs = (routes: MenuRecord[]) => {

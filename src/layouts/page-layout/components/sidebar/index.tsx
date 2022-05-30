@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import DynamicIcon from '@/components/DynamicIcon';
 import { MenuRecord } from '@/pages/system/menu/type';
 import styles from './index.module.less';
-import { useMenuTree } from '@/atoms/menu';
+import { useMenuTree } from '@/hooks/useMenuTree';
 import { useState } from 'react';
 import useToggle from '@/hooks/useToggle';
 

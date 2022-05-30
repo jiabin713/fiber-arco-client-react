@@ -6,7 +6,7 @@ import useOptions from '@/hooks/useDictOptions';
 
 const SearchForm = (props: { onSearch: (values: Partial<StaffParams>) => void }) => {
   const [form] = Form.useForm();
-  const [options, isLoading] = useOptions('staff_status');
+  const [options, isLoading] = useOptions('staff_work_status');
   const handleSubmit = () => {
     const values = form.getFieldsValue();
     props.onSearch(values);
@@ -49,7 +49,7 @@ const SearchForm = (props: { onSearch: (values: Partial<StaffParams>) => void })
             </Form.Item>
           </Grid.Col>
           <Grid.Col span={8}>
-            <Form.Item label='状态' field='status'>
+            <Form.Item label='在职' field='status'>
               <Select allowClear placeholder='请选择状态' options={options} loading={isLoading} />
             </Form.Item>
           </Grid.Col>

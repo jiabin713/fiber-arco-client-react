@@ -13,18 +13,6 @@ export const menuTreeQuery = selector({
   },
 });
 
-export const useMenuTree = () => {
-  const loadable = useRecoilValueLoadable(menuTreeQuery);
-  switch (loadable.state) {
-    case 'hasValue':
-      return loadable.contents;
-    case 'loading':
-      return [];
-    case 'hasError':
-      throw [];
-  }
-};
-
 export const getFlattenRoutes = (routes: MenuRecord[]) => {
   const res: MenuRecord[] = [];
   function travel(_routes: MenuRecord[]) {

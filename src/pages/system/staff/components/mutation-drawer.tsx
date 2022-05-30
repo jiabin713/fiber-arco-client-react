@@ -13,7 +13,8 @@ const MutationDrawer = (props: { visible: boolean; onCancel: () => void; formRec
   const [form] = Form.useForm();
   const [title, setTitle] = useState('');
   const mutation = useStaffMutation(title);
-  const [statusOptions, statusOptionsLoading] = useDictOptions('staff_status');
+  const [workStatusOptions, workStatusOptionsLoading] = useDictOptions('staff_work_status');
+  const [statusOptions, statusOptionsLoading] = useDictOptions('system_status');
   const [genderOptions, genderOptionsLoading] = useDictOptions('staff_gender');
 
   const { data: organizationTree, isLoading: organizationLoading } = useOrganizations({}, { enabled: !!props.visible });
@@ -27,6 +28,7 @@ const MutationDrawer = (props: { visible: boolean; onCancel: () => void; formRec
       email: props.formRecord.email,
       mobile: props.formRecord.mobile,
       gender: props.formRecord.gender || genderOptions.find((x) => x != null)?.value,
+      work_status: props.formRecord.work_status || workStatusOptions.find((x) => x != null)?.value,
       status: props.formRecord.status || statusOptions.find((x) => x != null)?.value,
       sort: props.formRecord.sort || 1000,
       remark: props.formRecord.remark,
@@ -118,9 +120,18 @@ const MutationDrawer = (props: { visible: boolean; onCancel: () => void; formRec
               loading={genderOptionsLoading}
             />
           </Form.Item>
+          <Form.Item label='在职状态' field='work_status' rules={[{ required: true, message: '在职状态为必选项' }]}>
+            <Select
+              placeholder='请选择在职状态'
+              unmountOnExit
+              allowClear
+              options={workStatusOptions}
+              loading={workStatusOptionsLoading}
+            />
+          </Form.Item>
           <Form.Item label='状态' field='status' rules={[{ required: true, message: '状态为必选项' }]}>
             <Select
-              placeholder='请选择状态'
+              placeholder='请选择在职状态'
               unmountOnExit
               allowClear
               options={statusOptions}

@@ -17,10 +17,10 @@ export function getColumns<T>(callback: (record: Partial<T>, type: string) => Pr
     },
     { title: '备注', dataIndex: 'remark' },
     {
-      title: '状态',
-      dataIndex: 'status',
+      title: '在职状态',
+      dataIndex: 'work_status',
       width: '10%',
-      render: (value) => <FiberTag code='staff_status' value={value} />,
+      render: (value) => <FiberTag code='staff_work_status' value={value} />,
     },
     {
       title: '操作',

@@ -1,17 +1,17 @@
 import { Input, Layout, Space, Typography } from '@arco-design/web-react';
 
+import Logo from '@/assets/logo.svg';
 import UserAvatar from './components/user-info';
 
 const Navbar = () => {
   return (
     <Layout.Header className='z-100 h-16 inset-0 sticky w-full flex justify-between bg-arco-bg-2 shadow '>
-      <div className='flex items-center pl-6'>
-        <Space align='center'>
-          <div className='flex items-center pl-6'></div>
-          <Typography.Title heading={5} className='m-0'>
-            Fiber Arco Pro
-          </Typography.Title>
-        </Space>
+      <div className='flex items-center'>
+        <div className='flex items-center pl-6 text-4xl'>
+          <Logo />
+        </div>
+        <h5 className='flex items-center pl-3 text-xl'>Fiber Arco Pro</h5>
+        {/* <Typography.Title heading={5}>Fiber Arco Pro</Typography.Title> */}
       </div>
       <div className='flex pr-6 items-center'>
         <Space size={'medium'}>

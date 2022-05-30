@@ -9,6 +9,7 @@ export interface StaffRecord {
   organization_id: string;
   position_id: string;
   role_id: string;
+  work_status: string;
   status: string;
   sort: number;
   remark: string;
@@ -24,6 +25,7 @@ export interface StaffParams {
   organization_id: string;
   position_id: string;
   role_id: string;
+  work_status: string;
   status: string;
   remark: string;
   current: number;
@@ -41,6 +43,7 @@ export interface StaffRequest {
   organization_id: string;
   position_id: string;
   role_id: string;
+  work_status: string;
   status: string;
   sort: number;
   remark: string;
