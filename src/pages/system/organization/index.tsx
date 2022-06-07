@@ -1,5 +1,5 @@
 import { Card, Table } from '@arco-design/web-react';
-import { OrganizationParams, OrganizationRecord } from './type.d';
+import { OrganizationParams, OrganizationRecord } from './type';
 import { useOrganizationDelete, useOrganizations } from './query';
 
 import MutationDrawer from './components/mutation-drawer';

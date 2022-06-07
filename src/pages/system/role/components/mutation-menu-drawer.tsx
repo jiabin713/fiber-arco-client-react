@@ -2,7 +2,7 @@ import { Card, Drawer, Tree } from '@arco-design/web-react';
 import { useGrantMenus, useRoleMenuMutation } from '../query';
 
 import FallbackCompent from '@/components/FallbackCompent';
-import { RoleRecord } from '../type.d';
+import { RoleRecord } from '../type';
 import { useMenus } from '@/pages/system/menu/query';
 import { useState } from 'react';
 

@@ -1,7 +1,7 @@
 import * as OrganizationService from './service';
 
 import { Message, Modal } from '@arco-design/web-react';
-import { OrganizationParams, OrganizationRecord, OrganizationRequest } from './type.d';
+import { OrganizationParams, OrganizationRecord, OrganizationRequest } from './type';
 import { UseQueryOptions, useQuery, useQueryClient } from 'react-query';
 
 import { useMutation } from 'react-query';

@@ -1,5 +1,5 @@
 import { Card, PaginationProps, Table } from '@arco-design/web-react';
-import { DictionaryParams, DictionaryRecord } from './type.d';
+import { DictionaryParams, DictionaryRecord } from './type';
 import { useDictionaries, useDictionaryDelete } from './query';
 
 import DictionaryItem from '../dictionary-item';

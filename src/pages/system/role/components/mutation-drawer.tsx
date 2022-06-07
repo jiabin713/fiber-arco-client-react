@@ -1,6 +1,6 @@
 import { Card, Drawer, Form, Input, InputNumber, Select } from '@arco-design/web-react';
 
-import { RoleRecord } from '../type.d';
+import { RoleRecord } from '../type';
 import useDictOptions from '@/hooks/useDictOptions';
 import { useRoleMutation } from '../query';
 import { useState } from 'react';

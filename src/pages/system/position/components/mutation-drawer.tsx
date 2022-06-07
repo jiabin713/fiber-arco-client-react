@@ -1,6 +1,6 @@
 import { Card, Drawer, Form, Input, InputNumber, Select } from '@arco-design/web-react';
 
-import { PositionRecord } from '../type.d';
+import { PositionRecord } from '../type';
 import useDictOptions from '@/hooks/useDictOptions';
 import { usePositionMutation } from '../query';
 import { useState } from 'react';

@@ -1,8 +1,7 @@
 import * as MenuService from '@/pages/system/menu/service';
 
-import { selector, useRecoilValueLoadable } from 'recoil';
-
 import { MenuRecord } from '@/pages/system/menu/type';
+import { selector } from 'recoil';
 
 // 根据用户id 获取相应的菜单和权限
 export const menuTreeQuery = selector({

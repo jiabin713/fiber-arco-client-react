@@ -1,7 +1,7 @@
 import { Card, Drawer, Form, Grid, Input, InputNumber, Radio, Select, TreeSelect } from '@arco-design/web-react';
 import { useMenuMutation, useMenus } from '../query';
 
-import { MenuRecord } from '../type.d';
+import { MenuRecord } from '../type';
 import { StatusEnum } from '@/atoms/dictionary';
 import useDictOptions from '@/hooks/useDictOptions';
 import { useState } from 'react';

@@ -1,6 +1,6 @@
 import { Card, Divider, Drawer, Form, Input, InputNumber, Select, TreeSelect } from '@arco-design/web-react';
 
-import { StaffRecord } from '../type.d';
+import { StaffRecord } from '../type';
 import { StatusEnum } from '@/atoms/dictionary';
 import useDictOptions from '@/hooks/useDictOptions';
 import { useOrganizations } from '@/pages/system/organization/query';

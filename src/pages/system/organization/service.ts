@@ -1,4 +1,4 @@
-import { OrganizationParams, OrganizationRecord, OrganizationRequest } from './type.d';
+import { OrganizationParams, OrganizationRecord, OrganizationRequest } from './type';
 
 // import { PageResponse } from '@/typings/global.d';
 import request from '@/utils/instance';

@@ -6,9 +6,13 @@ import {
   IconPoweroff,
   IconSettings,
 } from '@arco-design/web-react/icon';
-import { Navigate, useNavigate } from 'react-router-dom';
+
+import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { userInfoState } from '@/atoms/user';
 
 const UserAvatar = () => {
+  const userInfo = useRecoilValue(userInfoState);
   const navigate = useNavigate();
   const onClickMenuItem = (key: string) => {
     if (key === 'logout') {
@@ -49,7 +53,7 @@ const UserAvatar = () => {
   return (
     <Dropdown droplist={dropList} position='br' trigger={'click'}>
       <Avatar size={32} className='cursor-pointer'>
-        {/* <img alt='avatar' src={userInfo.avatar} /> */}
+        <img alt='avatar' src={userInfo.avatar} />
       </Avatar>
     </Dropdown>
   );

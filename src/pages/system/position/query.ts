@@ -1,7 +1,7 @@
 import * as PositionService from './service';
 
 import { Message, Modal } from '@arco-design/web-react';
-import { PositionParams, PositionRecord, PositionRequest } from './type.d';
+import { PositionParams, PositionRecord, PositionRequest } from './type';
 import { UseQueryOptions, useQuery, useQueryClient } from 'react-query';
 
 import { PageResponse } from '@/types/global';

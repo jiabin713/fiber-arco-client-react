@@ -1,7 +1,7 @@
 import { Button, Form, Grid, Input, Select } from '@arco-design/web-react';
 import { IconRefresh, IconSearch } from '@arco-design/web-react/icon';
 
-import { DictionaryItemParams } from '../type.d';
+import { DictionaryItemParams } from '../type';
 import useOptions from '@/hooks/useDictOptions';
 
 const SearchForm = (props: { onSearch: (values: Partial<DictionaryItemParams>) => void }) => {

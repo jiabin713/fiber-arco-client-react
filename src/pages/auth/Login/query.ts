@@ -1,6 +1,6 @@
 import * as AuthService from './service';
 
-import { LoginRequest } from './type.d';
+import { LoginRequest } from './type';
 import { Message } from '@arco-design/web-react';
 import { useMutation } from 'react-query';
 

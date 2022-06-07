@@ -1,7 +1,7 @@
 import { Card, Drawer, Form, FormInstance, Input, InputNumber, Select, TreeSelect } from '@arco-design/web-react';
 import { useOrganizationMutation, useOrganizations } from '../query';
 
-import { OrganizationRecord } from '../type.d';
+import { OrganizationRecord } from '../type';
 import { StatusEnum } from '@/atoms/dictionary';
 import useDictOptions from '@/hooks/useDictOptions';
 import { useState } from 'react';

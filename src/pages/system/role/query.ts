@@ -1,7 +1,7 @@
 import * as RoleService from './service';
 
 import { Message, Modal } from '@arco-design/web-react';
-import { RoleMenuParams, RoleMenuRecord, RoleMenuRequest, RoleParams, RoleRecord, RoleRequest } from './type.d';
+import { RoleMenuParams, RoleMenuRecord, RoleMenuRequest, RoleParams, RoleRecord, RoleRequest } from './type';
 import { UseQueryOptions, useQuery, useQueryClient } from 'react-query';
 
 import { PageResponse } from '@/types/global';

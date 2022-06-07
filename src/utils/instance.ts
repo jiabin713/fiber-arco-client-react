@@ -1,7 +1,8 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-import { Notification } from '@arco-design/web-react';
 import { HttpResponse } from '@/types/global.d';
+import { Notification } from '@arco-design/web-react';
+import { getToken } from './auth';
 
 const codeMessage: Record<number, string> = {
   200: '服务器成功返回请求的数据。',
@@ -32,6 +33,17 @@ instance.defaults.timeout = 3 * 1000;
 instance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     // 设置token
+    // let each request carry token
+    // this example using the JWT token
+    // Authorization is a custom headers key
+    // please modify it according to the actual situation
+    const token = getToken();
+    if (token) {
+      if (!config.headers) {
+        config.headers = {};
+      }
+      config.headers.Authorization = `Bearer ${token}`;
+    }
     return config;
   },
   (error) => {

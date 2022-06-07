@@ -1,5 +1,5 @@
 import { Card, Grid, PaginationProps, Table, Tree } from '@arco-design/web-react';
-import { StaffParams, StaffRecord } from './type.d';
+import { StaffParams, StaffRecord } from './type';
 import { useStaffDelete, useStaffs } from './query';
 
 import MutationDrawer from './components/mutation-drawer';
@@ -17,7 +17,7 @@ const Staff = () => {
   const { data: organizationTree, isLoading: organizationLoading } = useOrganizations({});
   const { data, isLoading } = useStaffs(formParams);
   const { confirmRemove } = useStaffDelete();
-  
+
 
   // 分页操作
   const onChangeTable = (pagination: Partial<PaginationProps>) => {

@@ -1,4 +1,4 @@
-import { PositionParams, PositionRecord, PositionRequest } from './type.d';
+import { PositionParams, PositionRecord, PositionRequest } from './type';
 
 import { PageResponse } from '@/types/global';
 import request from '@/utils/instance';

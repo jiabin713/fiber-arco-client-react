@@ -1,6 +1,6 @@
 import * as DictionaryService from '@/pages/system/dictionary/service';
 
-import { atom, selector, selectorFamily } from 'recoil';
+import { selectorFamily } from 'recoil';
 
 export const enum StatusEnum {
   enable = 'enable',

@@ -1,7 +1,7 @@
 import * as StaffService from './service';
 
 import { Message, Modal } from '@arco-design/web-react';
-import { StaffParams, StaffRecord, StaffRequest } from './type.d';
+import { StaffParams, StaffRecord, StaffRequest } from './type';
 import { UseQueryOptions, useQuery, useQueryClient } from 'react-query';
 
 import { PageResponse } from '@/types/global';
